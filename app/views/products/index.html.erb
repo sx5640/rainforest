@@ -1,4 +1,7 @@
 <h1>Products#index</h1>
+<div class="link">
+  <%= link_to "new", new_product_path%>
+</div>
 <div>
   <% @products.each do |product| %>
     <p>
