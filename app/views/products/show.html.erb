@@ -11,3 +11,32 @@
 <p>
   <%= link_to "remove", product_path(@product), method: :delete %>
 </p>
+
+<% if @product.reviews.any? %>
+  <div class="review_list">
+    <h3>Comments</h3>
+    <ul>
+      <% @product.reviews.each do |review| %>
+      <li>
+        <p>
+          <%= review.comment %>
+        </p>
+        <small>Commented by <%= review.user.email %></small>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if current_user %>
+  <h3>New Comment</h3>
+  <%= form_for [ @product, @review] do |f| %>
+  <div class="comment">
+    <p><%= f.label :comment %></p>
+    <p><%= f.text_area :comment %></p>
+    <p><%= f.submit %></p>
+  </div>
+  <% end %>
+<% else %>
+  <h4>Please <%= link_to "Log in", login_path %> to leave a comment</h4>
+<% end %>
