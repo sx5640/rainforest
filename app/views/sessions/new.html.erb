@@ -1,0 +1,16 @@
+<h1>Loging in</h1>
+<%= link_to 'Back to Homepage', root_path %>
+
+<%= form_tag sessions_path do %>
+  <div class="field">
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password %>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Log in!" %>
+  </div>
+<% end %>

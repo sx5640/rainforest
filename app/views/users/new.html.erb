@@ -1,17 +1,6 @@
 <h1>Sign Up!</h1>
 <%= link_to 'Back to Homepage', root_path %>
 
-<% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@product.errors.count, 'error') %></h2>
-    <ul>
-      <% @product.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-        <% end %>
-    </ul>
-  </div>
-  <% end %>
-
 <%= form_for(@user) do |f|%>
   <div class="field">
     <%= f.label :email %><br />
