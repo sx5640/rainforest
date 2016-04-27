@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       flash[:alert] = 'Please login'
       redirect_to login_path
+    end
   end
   helper_method :current_user
 end
