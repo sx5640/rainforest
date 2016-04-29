@@ -9,12 +9,17 @@ class ReviewsController < ApplicationController
   def create
     @review = @product.reviews.build(review_params)
     @review.user = current_user
-    if @review.save
-      redirect_to product_path(@product), notice: "review created successfully"
-    else
-      render product_path(@product), notice: "review was not created"
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to product_path(@product), notice: "review created successfully"}
+        format.js {}
+      else
+        format.html {render product_path(@product), notice: "review was not created"}
+        format.js {}
+      end
     end
   end
+
 
   def destroy
     @review = Review.find(params[:id])

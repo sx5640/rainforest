@@ -6,6 +6,14 @@ class ProductsController < ApplicationController
     else
       @products = Product.all
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    # if request.xhr?
+    #   render @products
+    # end
   end
 
   def show
@@ -27,7 +35,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to products_url
+    redirect_to products_path
     else
       render :new
     end
@@ -36,7 +44,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update_attributes(product_params)
-      redirect_to product_url(@product)
+    redirect_to products_path
     else
       render :edit
     end
@@ -45,7 +53,7 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to products_url
+    redirect_to products_path
   end
 
   private
