@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    sleep(10)
     @review = @product.reviews.build(review_params)
     @review.user = current_user
     respond_to do |format|

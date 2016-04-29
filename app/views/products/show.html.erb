@@ -35,6 +35,16 @@
   <h4>Please <%= link_to "Log in", login_path %> to leave a comment</h4>
 <% end %>
 
+<script type="text/javascript">
+  $(document).on('ready', function() {
+    $("#new_comment").on('ajax:beforeSend', function () {
+      $("input[type='submit']").val('Saving').attr('disabled', 'disabled');
+    })
+    $("#new_comment").on('ajax:complete', function () {
+      $("input[type='subit']").val('Create Review').removeAttr('diabled');
+    })
+  })
+</script>
 <!-- <script type="text/javascript">
 
   $(document).ready(function() {
