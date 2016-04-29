@@ -1,1 +1,6 @@
-$('.review_list > ul').append("<%= j(render @review) %>")
+<% if @review.errors.present? %>
+  $('.review_list').append("<%= j(render 'review_error_form') %>");
+<% else %>
+  $('.review_list').append("<%= j(render @review) %>");
+  $('#new_comment')[0].reset();
+<% end %>

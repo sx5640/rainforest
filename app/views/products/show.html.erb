@@ -15,27 +15,34 @@
   </p>
 </div>
 
-<% if @product.reviews.any? %>
-  <div class="review_list">
-    <h3>Comments</h3>
-    <%= render @product.reviews %>
-    <!-- <ul>
-      <% @product.reviews.each do |review| %>
-        <%= render review %>
-      <% end %>
-    </ul> -->
-  </div>
-<% end %>
+
+<div class="review_list">
+  <h3>Comments</h3>
+  <%= render @product.reviews %>
+</div>
+
 
 <% if current_user %>
   <h3>New Comment</h3>
-  <%= form_for [ @product, @review], remote: true do |f| %>
-  <div class="comment">
-    <p><%= f.label :comment %></p>
-    <p><%= f.text_area :comment %></p>
-    <p><%= f.submit %></p>
-  </div>
+  <%= form_for [ @product, @review], remote: true, html: {id: 'new_comment'} do |f| %>
+    <div class="comment">
+      <p><%= f.label :comment %></p>
+      <p><%= f.text_area :comment %></p>
+      <p ><%= f.submit %></p>
+    </div>
   <% end %>
 <% else %>
   <h4>Please <%= link_to "Log in", login_path %> to leave a comment</h4>
 <% end %>
+
+<!-- <script type="text/javascript">
+
+  $(document).ready(function() {
+     $("#new_comment")
+        .on('ajax:beforeSend', function() {alert("loading!");})
+        .on('ajax:success', function(data, status, xhr) {alert("success!");})
+        .on('ajax:error', function(xhr, status, error) {alert("error!");})
+        .on('ajax:complete', function() {alert("complete!");});
+  });
+
+</script> -->
