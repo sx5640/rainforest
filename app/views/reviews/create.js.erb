@@ -1,6 +1,7 @@
 <% if @review.errors.present? %>
   $('.review_list').append("<%= j(render 'review_error_form') %>");
 <% else %>
-  $('.review_list').append("<%= j(render @review) %>");
+  $('.review_list').append($("<%= j(render @review) %>").css('color', 'red'));
+  $(document).scrollTop($($('.each_comment')[$('.each_comment').size() -1]).position().top);
   $('#new_comment')[0].reset();
 <% end %>

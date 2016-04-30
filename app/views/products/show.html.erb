@@ -41,7 +41,9 @@
       $("input[type='submit']").val('Saving').attr('disabled', 'disabled');
     })
     $("#new_comment").on('ajax:complete', function () {
-      $("input[type='subit']").val('Create Review').removeAttr('diabled');
+      $("input[type='submit']").val('Create Review');
+      $("input[type='submit']").removeAttr('disabled');
+      $("#new_comment").scrollTop();
     })
   })
 </script>
